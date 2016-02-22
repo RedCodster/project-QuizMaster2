@@ -3,8 +3,7 @@ $(document).ready(function(){
   $.ajax({
     method: "GET",
     url: '/api/quizzes/' + window.location.pathname.split('/')[2] + '/questions',
-    success: function (response) {
-      var questionSet = response;
+    success: function (response) {;
       console.log(questionSet);
     }
   });
@@ -45,6 +44,7 @@ $(document).ready(function(){
   // Part 2
   var loadQuestion= function() {
     var ask = questionSet[currentQ];
+    console.log(ask);
     var choice = choices[Math.floor(Math.random() * 6)];
     // $('#question').text({question:question});
     // $('#pick'+choice[0]).text({answer:answer});
