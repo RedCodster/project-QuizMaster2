@@ -4,14 +4,14 @@ $(document).ready(function(){
     method: "GET",
     url: '/api/quizzes/' + window.location.pathname.split('/')[2] + '/questions',
     success: function (response) {
-      console.log(response);
+      var questionSet = response;
+      console.log(questionSet);
     }
   });
 
   // Global Variables
+  var questionSet = [];
   var currentQ = 0;
-  var subject = '';
-  var level = '';
   var answerChoice = '';
   var rightAnswers = 0;
   var questionsAsked = 0;
@@ -36,15 +36,21 @@ $(document).ready(function(){
     }
   }
 
+  $('#start-button').on('click',function() {
+    console.log()
+    loadQuestion();
+    timer = setInterval(decreaseTime, 1000);
+  });
+
   // Part 2
   var loadQuestion= function() {
-    var question = questions[currentQ];
+    var ask = questionSet[currentQ];
     var choice = choices[Math.floor(Math.random() * 6)];
-    $('#question').text(question.ask);
-    $('#pick'+choice[0]).text(question.dummy1);
-    $('#pick'+choice[1]).text(question.dummy2);
-    $('#pick'+choice[2]).text(question.answer);
-    $('#qpic').attr('src', question.image);
+    // $('#question').text({question:question});
+    // $('#pick'+choice[0]).text({answer:answer});
+    // $('#pick'+choice[1]).text({dummy1:dummy1});
+    // $('#pick'+choice[2]).text({dummy2:dummy2});
+    // $('#qpic').attr('src', {url:url});
   }
 
 // Take in answer choice
@@ -134,24 +140,24 @@ $(document).ready(function(){
 
 // All global variables must be reset and the html cleared before next round starts
 
-  $('#restart-button').on('click', function() {
-    $('#timeLeft').text('');
-    $('#scoreTot').text('');
-    subject = '';
-    level = '';
-    currentQ = 0;
-    answerChoice = '';
-    rightAnswers = 0;
-    questionsAsked = 0;
-    questionsSkipped = 0;
-    questionsTried = 0;
-    $('#start').show();
-    $('#tally').hide();
-    timeLeft = 60;
-    $('#timeLeft').text(': ' + timeLeft + ' secs left');
-    loadQuestion();
-    playerStat = "";
-    $('#start-button').attr("disabled", true)
-  });
+  // $('#restart-button').on('click', function() {
+  //   $('#timeLeft').text('');
+  //   $('#scoreTot').text('');
+  //   subject = '';
+  //   level = '';
+  //   currentQ = 0;
+  //   answerChoice = '';
+  //   rightAnswers = 0;
+  //   questionsAsked = 0;
+  //   questionsSkipped = 0;
+  //   questionsTried = 0;
+  //   $('#start').show();
+  //   $('#tally').hide();
+  //   timeLeft = 60;
+  //   $('#timeLeft').text(': ' + timeLeft + ' secs left');
+  //   loadQuestion();
+  //   playerStat = "";
+  //   $('#start-button').attr("disabled", true)
+  // });
 
 });

@@ -28,7 +28,7 @@
 
 }
 
-#answer-button {
+#answer-button, #start-button {
   background-color: red;
   font-style: bold;
   border-radius: 5px;
