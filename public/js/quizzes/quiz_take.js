@@ -3,12 +3,14 @@ $(document).ready(function(){
   $.ajax({
     method: "GET",
     url: '/api/quizzes/' + window.location.pathname.split('/')[2] + '/questions',
-    success: function (response) {;
+    success: function (response) {
+      questionSet = response;
       console.log(questionSet);
     }
-  });
+  })
 
   // Global Variables
+
   var questionSet = [];
   var currentQ = 0;
   var answerChoice = '';
@@ -18,13 +20,15 @@ $(document).ready(function(){
   var questionsSkipped = 0;
   var scoreXer;
   var timer;
-  var timeLeft = 60;
+  var timeLeft = 61;
   var choices = [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,2,1],[3,1,2]];
   var answerSelected = false;
   var playerStat = ""
 
   // Part 1
 
+  $('#game').hide();
+  $('#tally').hide();
 // Keep track of Time Limit
 
   function decreaseTime() {
@@ -36,21 +40,20 @@ $(document).ready(function(){
   }
 
   $('#start-button').on('click',function() {
-    console.log()
+    $('#game').show();
     loadQuestion();
     timer = setInterval(decreaseTime, 1000);
   });
 
   // Part 2
   var loadQuestion= function() {
-    var ask = questionSet[currentQ];
-    console.log(ask);
-    var choice = choices[Math.floor(Math.random() * 6)];
-    // $('#question').text({question:question});
-    // $('#pick'+choice[0]).text({answer:answer});
-    // $('#pick'+choice[1]).text({dummy1:dummy1});
-    // $('#pick'+choice[2]).text({dummy2:dummy2});
-    // $('#qpic').attr('src', {url:url});
+    var ask =questionSet[currentQ];
+    var choice = choices[Math.floor(Math.random()*6)];
+    $('#question').text(questionSet[currentQ].question);
+    $('#pick'+choice[0]).text(questionSet[currentQ].answer);
+    $('#pick'+choice[1]).text(questionSet[currentQ].dummy1);
+    $('#pick'+choice[2]).text(questionSet[currentQ].dummy2);
+    $('#qpic').attr('src', questionSet[currentQ].url);
   }
 
 // Take in answer choice
@@ -69,7 +72,7 @@ $(document).ready(function(){
     questionsSkipped ++;
     questionsAsked ++;
     currentQ++;
-    if (currentQ == questions.length || timeLeft<1) {
+    if (currentQ == questionSet.length || timeLeft<1) {
       $('#tally').show();
       $('#game').hide();
       chkStat();
@@ -84,13 +87,13 @@ $(document).ready(function(){
 
 // Check to see if answer is right or wrong
   $('#answer-button').on('click',function(){
-    var question = questions[currentQ];
-    if (answerChoice == question.answer) {
+    var question = questionSet[currentQ];
+    if (answerChoice == questionSet[currentQ].answer) {
       rightAnswers ++;
       $('#scoreTot').text(' ' +rightAnswers);
     }
     currentQ++;
-    if (currentQ == questions.length || timeLeft<1) {
+    if (currentQ == questionSet.length || timeLeft<1) {
       $('#tally').show();
       $('#game').hide();
       chkStat();
@@ -140,24 +143,24 @@ $(document).ready(function(){
 
 // All global variables must be reset and the html cleared before next round starts
 
-  // $('#restart-button').on('click', function() {
-  //   $('#timeLeft').text('');
-  //   $('#scoreTot').text('');
-  //   subject = '';
-  //   level = '';
-  //   currentQ = 0;
-  //   answerChoice = '';
-  //   rightAnswers = 0;
-  //   questionsAsked = 0;
-  //   questionsSkipped = 0;
-  //   questionsTried = 0;
-  //   $('#start').show();
-  //   $('#tally').hide();
-  //   timeLeft = 60;
-  //   $('#timeLeft').text(': ' + timeLeft + ' secs left');
-  //   loadQuestion();
-  //   playerStat = "";
-  //   $('#start-button').attr("disabled", true)
-  // });
+  $('#restart-button').on('click', function() {
+    $('#timeLeft').text('');
+    $('#scoreTot').text('');
+    subject = '';
+    level = '';
+    currentQ = 0;
+    answerChoice = '';
+    rightAnswers = 0;
+    questionsAsked = 0;
+    questionsSkipped = 0;
+    questionsTried = 0;
+    $('#start').show();
+    $('#tally').hide();
+    timeLeft = 60;
+    $('#timeLeft').text(': ' + timeLeft + ' secs left');
+    loadQuestion();
+    playerStat = "";
+    $('#start-button').attr("disabled", true)
+  });
 
 });
