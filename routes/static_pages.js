@@ -16,8 +16,7 @@ exports.register = function (server, options, next) {
       path: '/',
       handler: function(request, reply) {
         Authenticated(request, function (result) {
-          var data = result; // need to have authenticated inorder to show signout button
-          reply.view('static_pages/index', data).code(200);
+          reply.view('static_pages/index', result).code(200);
         });
       }
     }

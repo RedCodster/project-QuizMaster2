@@ -29,16 +29,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Take Quiz<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Make Quiz</a></li>
-
+            <li><a href="/quiz_choose">Quizzes</a></li>
           </ul>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Available Quizzes">
-            </div>
-            <button type="submit" class="btn btn-success">Check</button>
-          </form>
+
           <ul class="nav navbar-nav navbar-right">
           <% if (!authenticated) { %>
             <a href="/signup" class="btn btn-lg btn-warning">Sign Up</a>
@@ -56,3 +49,29 @@
 
 </body>
 </html>
+
+
+
+<!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Take Quiz<span class="sr-only">(current)</span></a></li>
+
+            <li><a href="#">Make Quiz</a></li>
+
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Available Quizzes">
+            </div>
+            <button type="submit" class="btn btn-success">Check</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+          <% if (!authenticated) { %>
+            <a href="/signup" class="btn btn-lg btn-warning">Sign Up</a>
+            <a href="/signin" class="btn btn-lg btn-primary">Sign In</a>
+          <% } else { %>
+            <button id="signout-btn" class="btn btn-lg btn-danger">Sign Out</button>
+          <% } %>
+          </ul>
+        </div>
+-->

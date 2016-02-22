@@ -1,5 +1,12 @@
-
 $(document).ready(function(){
+
+  $.ajax({
+    method: "GET",
+    url: '/api/quizzes/' + window.location.pathname.split('/')[2] + '/questions',
+    success: function (response) {
+      console.log(response);
+    }
+  });
 
   // Global Variables
   var currentQ = 0;
