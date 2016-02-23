@@ -42,7 +42,6 @@ exports.register = function(server, options, next) {
                   if (err) { return reply('Internal MongoDB error', err).code(400); }
 
                   console.log(set);
-                  quiz['questionSet'] = set.ops;
                   reply(set).code(200);
                 });
               });
@@ -52,26 +51,93 @@ exports.register = function(server, options, next) {
           })
         }
       }
-    }
+    },
+    { // Update a quiz
+      method: 'PUT',
+      path: '/api/quizzes/{id}',
+      config: {
+        handler: function(request, reply) {
+          Authenticated(request, function (result) {
+            if (result.authenticated) {
+              var db = request.server.plugins['hapi-mongodb'].db;
+              var ObjectID = request.server.plugins['hapi-mongodb'].ObjectID;
+              var updateQuiz = request.payload;
+              var quizLength = parseInt(updateQuiz.quizLength);
 
-    // {
-    //   method: 'DELETE',
-    //   path: '/api/quizzes',
-    //   handler: function(request, reply) {
-    //     var db = request.server.plugins['hapi-mongodb'].db;
-    //     var session = request.yar.get('hapi_qm2_session'); // CHANGE-ME
+              var quiz_id  = ObjectID(request.params.id);
+              var user_id  = ObjectID(result.user_id);
 
-    //     if (!session) {
-    //       return reply({ "message": "Already logged out" }).code(400);
-    //     }
+              var updateQuizInfo = {
+                'name': updateQuiz.quizName,
+                'topic': updateQuiz.quizTopic
+              };
 
-    //     db.collection('sessions').remove({ "session_id": session.session_id }, function(err, doc) {
-    //       if (err) { return reply('Internal MongoDB error', err).code(400); }
+              db.collection('quizzes').updateOne({"_id": quiz_id}, {$set : updateQuizInfo}, function(err, upatedQuiz){
+                if (err) { return reply('Internal MongoDB error', err).code(400); }
 
-    //       reply(doc).code(200);
-    //     });
-    //   }
-    // }
+                db.collection('questions').remove({'quiz_id': quiz_id}, function (err, set) {
+                  if (err) { return reply('Internal MongoDB error', err).code(400); }
+
+                    var questionSet = [];
+                    console.log(updateQuiz);
+                    for (i=0; i < quizLength; i++) {
+                      var obj = {};
+
+                      obj.question = updateQuiz['questionSet[' + i + '][question]'];
+                      obj.answer = updateQuiz['questionSet[' + i + '][answer]'];
+                      obj.dummy1 = updateQuiz['questionSet[' + i + '][dummy1]'];
+                      obj.dummy2 = updateQuiz['questionSet[' + i + '][dummy2]'];
+                      obj.url = updateQuiz['questionSet[' + i + '][url]'];
+                      obj.quiz_id = quiz_id;
+
+                      questionSet.push(obj);
+                    }
+
+                    console.log(questionSet);
+
+                    db.collection('questions').insert(questionSet, function(err, set2){
+                      if (err) { return reply('Internal MongoDB error', err).code(400); }
+
+                      console.log(set2);
+                      reply(set2).code(200);
+                    });
+                  });
+                });
+              } else {
+              return reply(result).code(400);
+              }
+          });
+        }
+      }
+    },
+    { // Delete a quiz
+      method: 'DELETE',
+      path: '/api/quizzes/{id}',
+      config: {
+        handler: function(request, reply) {
+          Authenticated(request, function (result) {
+            if (result.authenticated) {
+              var db = request.server.plugins['hapi-mongodb'].db;
+              var ObjectID = request.server.plugins['hapi-mongodb'].ObjectID;
+              var updateQuiz = request.payload;
+              var quiz_id = ObjectID(request.params.id);
+              var user_id = ObjectID(result.user_id);
+              db.collection('quizzes').remove({'_id': quiz_id}, function(err, doc){
+                if (err) { return reply('Internal MongoDB error', err).code(400); }
+
+                db.collection('questions').remove({'quiz_id': quiz_id}, function (err, doc2) {
+                  if (err) { return reply('Internal MongoDB error', err).code(400); }
+
+                  reply({message: "deleted!"}).code(200);
+                });
+              });
+            } else {
+              return reply(result).code(400);
+            }
+          });
+        }
+      }
+    },
   ]);
 
   next();

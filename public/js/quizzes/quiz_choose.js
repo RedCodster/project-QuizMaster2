@@ -1,4 +1,5 @@
 $(document).ready (function() {
+  var $selectedQuiz = null;
 
   function createQuestion (e) {
     e.preventDefault();
@@ -84,14 +85,15 @@ $(document).ready (function() {
 
   function deleteQuiz (e) {
     e.preventDefault();
-    var id = $(this).data('id');
+    var $button = $(this);
+    var id = $button.data('id');
 
     $.ajax({
       url: '/api/quizzes/' + id,
       method: 'DELETE',
       success: function (response, status) {
         console.log(response);
-        $(this).parent().remove();
+        $button.parent().remove();
       },
       error: function (response, status) {
         console.log(response);
@@ -174,6 +176,12 @@ $(document).ready (function() {
       data: newQuiz,
       success: function (response, status) {
         console.log(response);
+        $selectedQuiz.find("a").text(quizName);
+        $selectedQuiz.find(".edit").data("name", quizName);
+        $selectedQuiz.find(".edit").data("topic", quizTopic);
+
+        $('#edit-list').show();
+        $('#edit-quiz').hide();
       },
       error: function (response, status) {
         console.log(response);
@@ -187,6 +195,7 @@ $(document).ready (function() {
   function getQuestions (e) {
     e.preventDefault();
 
+    $selectedQuiz = $(this).parent();
     var name = $(this).data('name');
     var topic = $(this).data('topic');
     var id  = $(this).data('id');
@@ -204,6 +213,7 @@ $(document).ready (function() {
         var questionSet = response;
         var count = questionSet.length;
 
+        $('#edit #question-edit-list').empty();
         for (i=0; i < count; i++) {
           var list = questionSet[i];
           var editQuestion = ''+

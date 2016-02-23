@@ -73,9 +73,11 @@
           <% if (myQuizzes.length != 0) {%>
             <ul>
               <% myQuizzes.forEach(function(quiz) {%>
-                <li><a data-id="<%= quiz._id %>"><%= quiz.name %></a></li>
-                <button class="edit btn-sml btn-success" data-name="<%= quiz.name%>" data-topic="<%= quiz.topic%>" data-id="<%= quiz._id%>">edit</button>
-                <button class="delete btn-sml btn-danger" data-id="<%= quiz._id%>">delete</button>
+                <li>
+                  <a data-id="<%= quiz._id %>"><%= quiz.name %></a>
+                  <button class="edit btn-sml btn-success" data-name="<%= quiz.name%>" data-topic="<%= quiz.topic%>" data-id="<%= quiz._id%>">edit</button>
+                  <button class="delete btn-sml btn-danger" data-id="<%= quiz._id%>">delete</button>
+                </li>
               <% }) %>
             </ul>
           <% } else {%>
