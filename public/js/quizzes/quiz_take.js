@@ -41,6 +41,7 @@ $(document).ready(function(){
 
   $('#start-button').on('click',function() {
     $('#game').show();
+    $('#start-button').hide();
     loadQuestion();
     timer = setInterval(decreaseTime, 1000);
   });
@@ -129,7 +130,7 @@ $(document).ready(function(){
   }
 
   var tallyScore = function () {
-    $('#catLevel').text(subject+' ('+level+')');
+    // $('#catLevel').text(subject+' ('+level+')');
     $('#qstTry').text(questionsTried);
     $('#qstSkp').text(questionsSkipped);
     $('#ansRgt').text(rightAnswers);
@@ -137,7 +138,7 @@ $(document).ready(function(){
     $('.pctTot').each(function(index, elem) {
       $(elem).text(((rightAnswers/questionsAsked)*100).toFixed(1));
     });
-    $('#totPts').text(rightAnswers*scoreXer);
+    $('#totPts').text(rightAnswers);
     $('#chkStat').text(playerStat);
   }
 
@@ -154,13 +155,14 @@ $(document).ready(function(){
     questionsAsked = 0;
     questionsSkipped = 0;
     questionsTried = 0;
+    $('#start-button').show();
     $('#start').show();
     $('#tally').hide();
-    timeLeft = 60;
+    timeLeft = 61;
     $('#timeLeft').text(': ' + timeLeft + ' secs left');
     loadQuestion();
     playerStat = "";
-    $('#start-button').attr("disabled", true)
+    $('#start-button').attr("disabled", false)
   });
 
 });
