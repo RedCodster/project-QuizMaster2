@@ -8,6 +8,154 @@
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#take" role="tab" data-toggle="tab">Take Quiz</a></li>
       <li role="presentation"><a href="#make" role="tab" data-toggle="tab">Make Quiz</a></li>
+      <li role="presentation"><a href="#edit" role="tab" data-toggle="tab">My Quizzes</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade in active" id="take">
+        <h3> Please choose from the following available quizzes:</h3>
+        <ul>
+          <% quizzes.forEach(function(quiz) {%>
+            <li><a href="/quiz_take/<%= quiz._id %>"><%= quiz.name %></a></li>
+          <% }) %>
+        </ul>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="make">
+        <form id="question-form" class="container">
+          <h3> Please start entering your questions here:</h3>
+          <div class='col-md-12'>
+            <label>Question</label>
+            <input type="text" class="question" placeholder="Insert question here - don't forget the '?'">
+          </div>
+          <div class='col-md-6'>
+            <label>Answer</label>
+            <input type="text" class="answer" placeholder="Insert answer here">
+          </div>
+          <div class='col-md-6'>
+            <label>Dummy1</label>
+            <input type="text" class="dummy1" placeholder="Insert 1st dummy answer here">
+          </div>
+          <div class='col-md-6'>
+            <label>Dummy2</label>
+            <input type="text" class="dummy2" placeholder="Insert 2nd dummy answer here">
+          </div>
+          <div class='col-md-6'>
+            <label>url</label>
+            <input type="text" class="url" placeholder="Insert link to relevant media (Optional)">
+          </div>
+          <div class='col-md-4'>
+            <button id="question-create" class="btn btn-info">Create New Question</button>
+          </div>
+        </form>
+
+        <div class='container col-md-9'>
+          <ol id="question-list">
+          </ol>
+        </div>
+
+        <div class="container quiz-details">
+          <div class="question col-xs-6">
+            <label>Quiz Name</label>
+            <input type="text" class="quiz-name" placeholder="Insert quiz name here">
+          </div>
+          <div class="question col-xs-6">
+            <label>Quiz Topic</label>
+            <input type="text" class="quiz-topic" placeholder="Insert quiz topic here">
+          </div>
+          <div class='col-md-4'>
+            <button id="create-quiz" type="button" class="btn btn-success">Create New Quiz</button>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="edit">
+        <div id="edit-list">
+        <h3> Here are the quizzes you are allowed to edit or delete:</h3>
+          <% if (myQuizzes.length != 0) {%>
+            <ul>
+              <% myQuizzes.forEach(function(quiz) {%>
+                <li><a data-id="<%= quiz._id %>"><%= quiz.name %></a></li>
+                <button class="edit btn-sml btn-warning">edit</button>
+                <button class="delete btn-sml btn-danger">delete</button>
+              <% }) %>
+            </ul>
+          <% } else {%>
+            <h3>You have no quizzes to edit</h3>
+          <% } %>
+        </div>
+        <div id="edit-quiz" style="display: none;">
+          <form id="question-edit-form" class="container">
+            <h3> Please start entering your questions here:</h3>
+            <div class='col-md-12'>
+              <label>Question</label>
+              <input type="text" class="question" placeholder="Insert question here - don't forget the '?'">
+            </div>
+            <div class='col-md-6'>
+              <label>Answer</label>
+              <input type="text" class="answer" placeholder="Insert answer here">
+            </div>
+            <div class='col-md-6'>
+              <label>Dummy1</label>
+              <input type="text" class="dummy1" placeholder="Insert 1st dummy answer here">
+            </div>
+            <div class='col-md-6'>
+              <label>Dummy2</label>
+              <input type="text" class="dummy2" placeholder="Insert 2nd dummy answer here">
+            </div>
+            <div class='col-md-6'>
+              <label>url</label>
+              <input type="text" class="url" placeholder="Insert link to relevant media (Optional)">
+            </div>
+            <div class='col-md-4'>
+              <button id="question-create" class="btn btn-info">Create New Question</button>
+            </div>
+          </form>
+
+          <div class='container col-md-9'>
+            <ol id="question-list">
+            </ol>
+          </div>
+
+          <div class="container quiz-details">
+            <div class="question col-xs-6">
+              <label>Quiz Name</label>
+              <input type="text" class="quiz-name" placeholder="Insert quiz name here">
+            </div>
+            <div class="question col-xs-6">
+              <label>Quiz Topic</label>
+              <input type="text" class="quiz-topic" placeholder="Insert quiz topic here">
+            </div>
+            <div class='col-md-4'>
+              <button id="create-quiz" type="button" class="btn btn-success">Create New Quiz</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="/public/js/quizzes/quiz_choose.js"></script>
+<link rel="stylesheet" href="/public/css/quizzes/quiz_choose.css">
+
+
+
+<!--
+
+Original (copy and paste over everything before if the code goes wrong)
+
+<div class='container row col-md-12 col-sm-6'>
+  <div>
+    <h1>Quiz Master</h1>
+    <img src='/public/photos/qm2_logo.jpeg'>
+  </div>
+
+  <div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#take" role="tab" data-toggle="tab">Take Quiz</a></li>
+      <li role="presentation"><a href="#make" role="tab" data-toggle="tab">Make Quiz</a></li>
     </ul>
 
     <div class="tab-content">
@@ -66,72 +214,12 @@
           </div>
         </div>
       </div>
-
     </div>
 
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane fade in active" id="take">
-
-      </div>
-      <div role="tabpanel" class="tab-pane fade" id="take">
-        <ul></ul>
-      </div>
-    </div>
   </div>
-
 
 </div>
 
-
-<script src="/public/js/quizzes/quiz_choose.js"></script>
-<link rel="stylesheet" href="/public/css/quizzes/quiz_choose.css">
-
-
-
-<!--
-Original (copy and paste over everything before if the code goes wrong)
-
-<div class='container row col-md-12 col-sm-6'>
-  <div>
-    <h1>Quiz Master</h1>
-    <img src='/public/photos/qm2_logo.jpeg'>
-  </div>
-
-  <div>
-    <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#take" role="tab" data-toggle="tab">Take Quiz</a></li>
-      <li role="presentation"><a href="#make" role="tab" data-toggle="tab">Make Quiz</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane fade in active" id="take">
-        <ul>
-          <% quizzes.forEach(function(quiz) {%>
-            <li><a href="/quiz_take/<%= quiz._id %>"><%= quiz.name %></a></li>
-          <% }) %>
-        </ul>
-      </div>
-      <div role="tabpanel" class="tab-pane fade" id="make">
-        <ul></ul>
-      </div>
-    </div>
-
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane fade in active" id="take">
-
-      </div>
-      <div role="tabpanel" class="tab-pane fade" id="take">
-        <ul></ul>
-      </div>
-    </div>
-  </div>
-
-
-</div>
-
-<script src="/public/js/quizzes/quiz_make.js"></script>
-<link rel="stylesheet" href="/public/css/quizzes/quiz_make.css">
-</div>
 
 <script src="/public/js/quizzes/quiz_choose.js"></script>
 <link rel="stylesheet" href="/public/css/quizzes/quiz_choose.css">
