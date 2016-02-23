@@ -69,13 +69,13 @@
       </div>
       <div role="tabpanel" class="tab-pane fade" id="edit">
         <div id="edit-list">
-        <h3> Here are the quizzes you are allowed to edit or delete:</h3>
+          <h3> Here are the quizzes you are allowed to edit or delete:</h3>
           <% if (myQuizzes.length != 0) {%>
             <ul>
               <% myQuizzes.forEach(function(quiz) {%>
                 <li><a data-id="<%= quiz._id %>"><%= quiz.name %></a></li>
-                <button class="edit btn-sml btn-warning">edit</button>
-                <button class="delete btn-sml btn-danger">delete</button>
+                <button class="edit btn-sml btn-success" data-name="<%= quiz.name%>" data-topic="<%= quiz.topic%>" data-id="<%= quiz._id%>">edit</button>
+                <button class="delete btn-sml btn-danger" data-id="<%= quiz._id%>">delete</button>
               <% }) %>
             </ul>
           <% } else {%>
@@ -84,7 +84,7 @@
         </div>
         <div id="edit-quiz" style="display: none;">
           <form id="question-edit-form" class="container">
-            <h3> Please start entering your questions here:</h3>
+            <h3> Please enter additional questions here:</h3>
             <div class='col-md-12'>
               <label>Question</label>
               <input type="text" class="question" placeholder="Insert question here - don't forget the '?'">
@@ -111,29 +111,27 @@
           </form>
 
           <div class='container col-md-9'>
-            <ol id="question-list">
+            <ol id="question-edit-list">
             </ol>
           </div>
 
           <div class="container quiz-details">
             <div class="question col-xs-6">
               <label>Quiz Name</label>
-              <input type="text" class="quiz-name" placeholder="Insert quiz name here">
+              <input type="text" class="quiz-name" value="">
             </div>
             <div class="question col-xs-6">
               <label>Quiz Topic</label>
-              <input type="text" class="quiz-topic" placeholder="Insert quiz topic here">
+              <input type="text" class="quiz-topic" value="">
             </div>
             <div class='col-md-4'>
-              <button id="create-quiz" type="button" class="btn btn-success">Create New Quiz</button>
+              <button id="update-quiz" type="button" class="btn btn-success">Update Quiz</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-
 </div>
 
 

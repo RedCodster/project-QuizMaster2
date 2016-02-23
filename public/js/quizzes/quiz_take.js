@@ -51,10 +51,10 @@ $(document).ready(function(){
     var ask =questionSet[currentQ];
     var choice = choices[Math.floor(Math.random()*6)];
     $('#question').text(questionSet[currentQ].question);
-    $('#pick'+choice[0]).text(questionSet[currentQ].answer);
-    $('#pick'+choice[1]).text(questionSet[currentQ].dummy1);
-    $('#pick'+choice[2]).text(questionSet[currentQ].dummy2);
-    $('#qpic').attr('src', questionSet[currentQ].url);
+    $('#pick'+choice[0]).text(ask.answer);
+    $('#pick'+choice[1]).text(ask.dummy1);
+    $('#pick'+choice[2]).text(ask.dummy2);
+    $('#qpic').attr('src', ask.url);
   }
 
 // Take in answer choice
