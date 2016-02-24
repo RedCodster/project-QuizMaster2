@@ -69,7 +69,7 @@ $(document).ready (function() {
     console.log(newQuiz);
 
     $.ajax({
-      url: "http://0.0.0.0:8000/api/quizzes",
+      url: "/api/quizzes",
       method: "POST",
       data: newQuiz,
       success: function (response, status) {
@@ -172,7 +172,7 @@ $(document).ready (function() {
     console.log(newQuiz);
 
     $.ajax({
-      url: "http://0.0.0.0:8000/api/quizzes/" + id,
+      url: "/api/quizzes/" + id,
       method: "PUT",
       data: newQuiz,
       success: function (response, status) {
