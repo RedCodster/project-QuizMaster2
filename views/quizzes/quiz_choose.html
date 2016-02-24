@@ -17,9 +17,22 @@
         </ul>
       </div>
       <div role="tabpanel" class="tab-pane fade" id="make">
+        <div class="container quiz-details">
+          <div class="question col-xs-6">
+            <label>Quiz Name</label>
+            <input type="text" class="quiz-name" placeholder="Insert quiz name here">
+          </div>
+          <div class="question col-xs-6">
+            <label>Quiz Topic</label>
+            <input type="text" class="quiz-topic" placeholder="Insert quiz topic here">
+          </div>
+          <div class='col-md-4'>
+            <button id="create-quiz" type="button" class="btn btn-success">Create New Quiz</button>
+          </div>
+        </div>
         <form id="question-form" class="container">
-          <h3> Please start entering your questions here:</h3>
           <div class='col-md-12'>
+            <h3> Please start entering your questions here:</h3>
             <label>Question</label>
             <input type="text" class="question" placeholder="Insert question here - don't forget the '?'">
           </div>
@@ -49,19 +62,7 @@
           </ol>
         </div>
 
-        <div class="container quiz-details">
-          <div class="question col-xs-6">
-            <label>Quiz Name</label>
-            <input type="text" class="quiz-name" placeholder="Insert quiz name here">
-          </div>
-          <div class="question col-xs-6">
-            <label>Quiz Topic</label>
-            <input type="text" class="quiz-topic" placeholder="Insert quiz topic here">
-          </div>
-          <div class='col-md-4'>
-            <button id="create-quiz" type="button" class="btn btn-success">Create New Quiz</button>
-          </div>
-        </div>
+
       </div>
       <div role="tabpanel" class="tab-pane fade" id="edit">
         <div id="edit-list">

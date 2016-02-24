@@ -9,7 +9,7 @@
 }
 
 .ans-choices {
-  background-color: lightgrey;
+  background-color: aliceblue;
   height: 550px;
   border: 2px solid black;
   border-radius: 5px;
@@ -20,7 +20,7 @@
 }
 
 .graphic {
-  background-color: lightgrey;
+  background-color: lavender;
   height: 550px;
   border: 2px solid black;
   border-radius: 5px;
@@ -28,13 +28,36 @@
 
 }
 
-#answer-button, #start-button {
-  background-color: red;
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+  width: 500px;
+  height: 380px;
+  object-fit: cover;
+  object-position: center;
+}
+
+#start-button {
+  font-style: bold;
+  border-radius: 5px;
+  margin: 50px 0px 50px 0px;
+  font-weight: bold;
+  height: 60px;
+  width: 100%;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  background-color: limegreen;
+}
+
+#answer-button {
   font-style: bold;
   border-radius: 5px;
   margin: 10px 0px 10px 0px;
   font-weight: bold;
-  font-size: 18px;
+  height: 60px;
+  width: 100%;
+  color: white;
+  font-size: 40px;
+  background-color: blue;
 }
 
 #gameover {
@@ -48,7 +71,7 @@
 }
 
 .score-summary {
-  background-color: lightgrey;
+  background-color: lavender;
   height: 550px;
   border: 2px solid black;
   border-radius: 5px;
@@ -59,7 +82,7 @@
 }
 
 .player-status {
-  background-color: lightgrey;
+  background-color: aliceblue;
   height: 550px;
   border: 2px solid black;
   border-radius: 5px;
@@ -75,7 +98,10 @@
   border-radius: 5px;
   margin: 10px 0px 10px 0px;
   font-weight: bold;
-  font-size: 18px;
+  height: 60px;
+  width: 100%;
+  color: white;
+  font-size: 40px;
 }
 
 #newquiz-button {
@@ -84,5 +110,9 @@
   border-radius: 5px;
   margin: 10px 0px 10px 0px;
   font-weight: bold;
-  font-size: 18px;
+  height: 60px;
+  width: 100%;
+  color: white;
+  font-size: 40px;
 }
+
