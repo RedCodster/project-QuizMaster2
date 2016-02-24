@@ -74,6 +74,7 @@ $(document).ready (function() {
       data: newQuiz,
       success: function (response, status) {
         console.log(response);
+
       },
       error: function (response, status) {
         console.log(response);

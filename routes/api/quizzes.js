@@ -42,7 +42,7 @@ exports.register = function(server, options, next) {
                   if (err) { return reply('Internal MongoDB error', err).code(400); }
 
                   console.log(set);
-                  reply(set).code(200);
+                  reply({message: 'You have successfully created a new quiz ' + 'name'}).code(200);
                 });
               });
             } else {

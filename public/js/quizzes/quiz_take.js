@@ -113,19 +113,19 @@ $(document).ready(function(){
     var pctTot = (rightAnswers/questionsAsked);
     if (pctTot < 0.2) {
         playerStat = "Dohh!";
-        $('#statPic').attr("src","images/dohh.gif");
+        $('#statPic').attr("src","/public/photos/dohh.gif");
     } else if (pctTot >= 0.2 && pctTot < 0.5) {
         playerStat = "Slacker";
-        $('#statPic').attr("src","images/slacker.gif");
+        $('#statPic').attr("src","/public/photos/slacker.gif");
     } else if (pctTot  >= 0.5 && pctTot < 0.7) {
         playerStat = "Average Joe";
-        $('#statPic').attr("src","images/averagejoe.gif");
+        $('#statPic').attr("src","/public/photos/averagejoe.gif");
     } else if (pctTot >= 0.7 && pctTot < 0.9) {
         playerStat = "Egg Head";
-        $('#statPic').attr("src","images/egghead.gif");
+        $('#statPic').attr("src","/public/photos/egghead.gif");
     } else if (pctTot >= 0.9) {
         playerStat = "Rock Star";
-        $('#statPic').attr("src","images/rockstar.gif")
+        $('#statPic').attr("src","/public/photos/rockstar.gif")
     }
   }
 

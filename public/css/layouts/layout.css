@@ -1,5 +1,6 @@
 h1 {
-  font-size: 60px;
+  font-family: 'Rock Salt', cursive; font-weight: 400; font-size: 60px;
+
 }
 
 .nav {
@@ -8,4 +9,9 @@ h1 {
 
 .btn {
   padding-bottom: 5px;
+}
+
+body {
+  font-family: 'Permanent Market', cursive; font-weight: 500; font-size: 30px;
+  background-image: url(/public/photos/background.jpg);
 }
