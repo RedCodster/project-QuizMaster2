@@ -116,7 +116,7 @@ $(document).ready(function(){
         $('#statPic').attr("src","/public/photos/dohh.gif");
     } else if (pctTot >= 0.2 && pctTot < 0.5) {
         playerStat = "Slacker";
-        $('#statPic').attr("src","/public/photos/slacker.gif");
+        $('#statPic').attr("src","/public/photos/slacker3.gif");
     } else if (pctTot  >= 0.5 && pctTot < 0.7) {
         playerStat = "Average Joe";
         $('#statPic').attr("src","/public/photos/averagejoe.gif");

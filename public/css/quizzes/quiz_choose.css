@@ -17,3 +17,8 @@ label {
 button {
   margin: 5px;
 }
+
+body {
+  font-family: 'Permanent Marker', cursive; font-weight: 500; font-size: 22px;
+  background-image: url(/public/photos/background.jpg);
+}
